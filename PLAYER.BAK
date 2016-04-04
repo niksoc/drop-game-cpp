@@ -1,0 +1,67 @@
+#ifndef _player
+#define _player
+class player
+{
+    int score;
+    char na[10];
+ public:void disp();
+	void scoreupdate(int);
+
+};
+void player::scoreupdate(int score)
+{
+	player a[5],k,b,t;
+	k.score = score;
+	int m=0,j;
+	int flag=1;
+	cout <<"SAi shdfgdsskldfsdkgf";
+	getch();
+	ifstream f("c:\\tc\\bin\\drop\\tbr.dat",ios::binary|ios::in);
+	if(!f)
+	{
+	cout<<"ERROR.";getch(); return;};
+	while(f.read((char*)&b,sizeof(b)))
+	{
+		a[m]=b; m++;
+	}
+	f.close();
+	for(int i=0; i<5&&flag;i++)
+	{
+
+		if(k.score>a[i].score)
+		{    int j=4;
+			cout<<"Highscore!";
+			cout<<"Enter your name : ";
+			cin>>k.na;
+					  while(j>=i+1)
+					    {
+							a[j+1] = a[j];
+							j--;
+					    }
+						a[i]=k;flag = 0;
+		}
+
+	}
+	ofstream g("c:\\tc\\bin\\drop\\tbr.dat",ios::binary|ios::out);
+	for(int l = 0;l<5; l++)
+	{
+		g.write((char*)&(a[l]) , sizeof(a[l]));
+	}
+	g.close();
+}
+void player::disp()
+{
+	player ob;
+	ifstream f("c:\\tc\\bin\\drop\\tbr.dat",ios::binary);
+	cout<<"HIGHSCORES;lfjslgjslkgjsldk\n\n";
+	cout<<"\t\tNAME\t\tSCORE\n";
+	f.read((char*)&ob,sizeof(ob));
+	while(!f.eof())
+	{
+		cout<<"\t\t"<<ob.na<<"\t\t"<<ob.score<<"\n";
+		f.read((char*)&ob,sizeof(ob));
+	}
+	f.close();
+}
+
+#endif

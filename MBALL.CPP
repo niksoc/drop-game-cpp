@@ -1,0 +1,14 @@
+#include "MBALL.H"
+extern long key;
+void mball::get_input()
+{
+     key=0;
+     draw_ball();
+     if(bioskey(1)!=0) key=bioskey(0);
+	 switch(key)
+	 {
+		case  DOWN :if(y!=362) {erase_ball();y+=60;draw_ball();}break;
+		case  UP   :if(y!=242) {erase_ball();y-=60;draw_ball();}
+	 }
+}
+//ski ba bop ba dop bop
